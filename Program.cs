@@ -35,8 +35,10 @@ namespace eTickets
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            //seed database
+            AppDbIntializer.Seed(app);
             app.Run();
+            
         }
     }
 }
