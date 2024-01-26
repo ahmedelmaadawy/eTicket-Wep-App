@@ -29,7 +29,7 @@ namespace eTickets.Controllers
             {
                 return View(actor);
             }
-            _service.AddAsync(actor);
+            await _service.AddAsync(actor);
             return RedirectToAction(nameof(Index));
         }
         //Get : Actors/Details/1
@@ -59,7 +59,7 @@ namespace eTickets.Controllers
             {
                 return View(actor);
             }
-            _service.UpdateAsync(id, actor);
+            await _service.UpdateAsync(id, actor);
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Delete(int id)
