@@ -18,7 +18,10 @@ namespace eTickets
             //Services Configration
             //Dependincy injection
             builder.Services.AddScoped<IActorsService, ActorsService>();
+            //Producers Service
+            builder.Services.AddScoped<IProducersService, ProducersService>();
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
