@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Data
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,10 @@ namespace eTickets.Data
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Actor_Movie> Actors_Movies { get; set; }
         public DbSet<Producer> Producers { get; set; }
+
+        //Orders Related tables
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
     }
 }
