@@ -54,8 +54,8 @@
                                 <a class="btn btn-outline-primary float-md-end" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Show Details
                                 </a>
-                                <a class="btn btn-success text-white">
-                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Price.ToString("c"))
+                                <a class="btn btn-success text-white" asp-action="AddToShoppingCart" asp-controller="Orders" asp-route-id="@item.Id">
+                                    <i class="bi bi-cart-plus" ></i> Add to Cart (Price @item.Price.ToString("c"))
                                 </a>
                             </p>
                         </div>
