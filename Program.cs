@@ -1,6 +1,9 @@
 using eTickets.Data;
 using eTickets.Data.Cart;
 using eTickets.Data.Services;
+using eTickets.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets
@@ -30,6 +33,15 @@ namespace eTickets
             //Configration for shopping cart
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+            //Authentication and authoriztion
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
+            builder.Services.AddMemoryCache();
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
+
             builder.Services.AddSession();
             var app = builder.Build();
 
@@ -47,6 +59,10 @@ namespace eTickets
 
             app.UseRouting();
             app.UseSession();
+
+
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseAuthorization();
 
             app.MapControllerRoute(
@@ -54,6 +70,7 @@ namespace eTickets
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             //seed database
             AppDbIntializer.Seed(app);
+            AppDbIntializer.SeedUsersAndRolesAsync(app).Wait();
             app.Run();
 
         }
