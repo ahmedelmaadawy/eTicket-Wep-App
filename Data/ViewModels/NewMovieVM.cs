@@ -22,7 +22,7 @@ namespace eTickets.Data.ViewModels
         [Display(Name = "Movie Start Date")]
         public DateTime StartDate { get; set; }
         [Required(ErrorMessage = "Movie EndDate Is Required")]
-        [Display(Name = "Movie Name")]
+        [Display(Name = "Movie End Date")]
         public DateTime EndDate { get; set; }
         [Required(ErrorMessage = "Movie Category Is Required")]
         [Display(Name = "Movie Category")]
